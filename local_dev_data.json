@@ -1,0 +1,72 @@
+{
+  "places": [
+    {
+      "name": "New Asian Panda",
+      "orderAgain": "yes",
+      "location": "10430 Ridgefield Pkwy, Richmond, VA 23233",
+      "imageUrl": "https://s3-media0.fl.yelpcdn.com/bphoto/pFWe4FCDICTFEQJ7FLy7oQ/o.jpg",
+      "notes": "Overall pretty good!",
+      "websiteUrl": "https://www.newasianpandava.com/",
+      "deliversToTheHouse": true,
+      "lastUpdatedAt": "Tue, 14 Jun 2022 17:25:06 GMT",
+      "createdAt": "Tue, 14 Jun 2022 17:25:06 GMT",
+      "items": [
+        {
+          "name": "Dumplings",
+          "orderAgain": "yes",
+          "notes": "Closest so far, dough is great, could use more filling",
+          "lastUpdatedAt": "Tue, 14 Jun 2022 17:27:09 GMT",
+          "createdAt": "Tue, 14 Jun 2022 17:27:09 GMT",
+          "deleted": false
+        },
+        {
+          "name": "Lo Mein",
+          "orderAgain": "yes",
+          "notes": "Noodles needed more bite, pork was exactly right, overall very good",
+          "lastUpdatedAt": "Tue, 14 Jun 2022 17:29:13 GMT",
+          "createdAt": "Tue, 14 Jun 2022 17:29:13 GMT",
+          "deleted": false
+        }
+      ],
+      "deleted": false
+    },
+    {
+      "name": "Bocate Arepa Bar",
+      "orderAgain": "yes",
+      "location": "10170 W Broad St, Glen Allen, VA 23060",
+      "imageUrl": "https://s3-media0.fl.yelpcdn.com/bphoto/ziRz32ESOzqJMxLLpwRf_Q/o.jpg",
+      "notes": "Delicious and greasy",
+      "websiteUrl": "https://bocata-arepa-bar.square.site/",
+      "deliversToTheHouse": true,
+      "lastUpdatedAt": "Tue, 14 Jun 2022 18:25:06 GMT",
+      "createdAt": "Tue, 14 Jun 2022 18:25:06 GMT",
+      "items": [
+        {
+          "name": "Pabellon Arepa",
+          "orderAgain": "yes",
+          "notes": "Beef was amazing",
+          "lastUpdatedAt": "Tue, 14 Jun 2022 18:27:09 GMT",
+          "createdAt": "Tue, 14 Jun 2022 18:27:09 GMT",
+          "deleted": false
+        },
+        {
+          "name": "Chicken Empanada",
+          "orderAgain": "yes",
+          "notes": "Fried and a little greasy but the chicken was so flavorful",
+          "lastUpdatedAt": "Tue, 14 Jun 2022 18:29:13 GMT",
+          "createdAt": "Tue, 14 Jun 2022 18:29:13 GMT",
+          "deleted": false
+        },
+        {
+          "name": "Domino Arepa",
+          "orderAgain": "maybe",
+          "notes": "Good but a little bland - could use hot sauce?",
+          "lastUpdatedAt": "Tue, 14 Jun 2022 18:45:22 GMT",
+          "createdAt": "Tue, 14 Jun 2022 18:45:22 GMT",
+          "deleted": false
+        }
+      ],
+      "deleted": false
+    }
+  ]
+}
