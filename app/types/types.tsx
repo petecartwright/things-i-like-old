@@ -1,25 +1,27 @@
 export interface Place {
   name: string
-  orderAgain?: string
-  location?: string
-  imageUrl?: string
-  notes?: string
-  websiteUrl?: string
-  deliversToTheHouse?: boolean
-  lastUpdatedAt?: string
+
   createdAt?: string
-  items?: Item[]
   deleted?: boolean
   deletedAt?: string
+  deliversToTheHouse?: boolean
+  imageUrl?: string
+  items?: Item[]
+  lastUpdatedAt?: string
+  location?: string
+  notes?: string
+  orderAgain?: string
+  websiteUrl?: string
 }
 
 export interface Item {
   name: string
-  orderAgain?: string
-  imageUrl?: string
-  notes?: string
-  lastUpdatedAt?: string
+
   createdAt?: string
   deleted?: boolean
   deletedAt?: string
+  imageUrl?: string
+  lastUpdatedAt?: string
+  notes?: string
+  orderAgain?: string
 }
