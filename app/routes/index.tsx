@@ -1,10 +1,10 @@
 import type { LoaderFunction } from "@remix-run/node"
 import type { Place } from "../types/types"
 import { useLoaderData } from "@remix-run/react"
-import { getLocalData } from "../utils/getLocalData.server"
+import { getPlaces } from "../utils/getLocalData.server"
 
 export const loader: LoaderFunction = async () => {
-  return getLocalData()
+  return getPlaces()
 }
 
 export default function Index() {
@@ -16,10 +16,14 @@ export default function Index() {
         {places.map((element) => {
           return (
             <li key={element.name}>
-              {element.name}
+              {element.name + "     "}
               <ul>
                 {element.items?.map((item) => {
-                  return <li key={item.name}>{item.name}</li>
+                  return (
+                    <li key={item.name}>
+                      <div>{item.name} </div>
+                    </li>
+                  )
                 })}
               </ul>
             </li>
