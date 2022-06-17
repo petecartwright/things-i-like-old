@@ -1,5 +1,8 @@
 export interface Place {
+  // unique identifier for this place
   name: string
+  // human readable version of the name
+  humanName: string
 
   createdAt?: string
   deleted?: boolean
@@ -15,7 +18,10 @@ export interface Place {
 }
 
 export interface Item {
+  // unique identifier for this item at this place
   name: string
+  // human readable version of the name
+  humanName: string
 
   createdAt?: string
   deleted?: boolean
