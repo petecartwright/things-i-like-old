@@ -21,7 +21,12 @@ export default function Index() {
                 {element.items?.map((item) => {
                   return (
                     <li key={item.name}>
-                      <div>{item.name} </div>
+                      {item.name} - {item.notes}
+                      <br /> Created at :{" "}
+                      {item.createdAt &&
+                        new Date(Date.parse(item.createdAt)).toString()}
+                      <br /> Updated at : {item.lastUpdatedAt}
+                      <br /> Order Again? {item.orderAgain}
                     </li>
                   )
                 })}
