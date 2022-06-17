@@ -1,49 +1,23 @@
-# Welcome to Remix!
+# Do I Like This?
 
-- [Remix Docs](https://remix.run/docs)
+Small app to help me and my wife keep track of things that we do and don't like.
 
-## Development
+## Why?
 
-The following command will run two processes during development when using Architect as your server.
+Could this be a google doc? yes.
 
-- Your Architect server sandbox
-- The Remix development server
+Could this be a shared Notes app note? yes.
 
-```sh
-$ npm run dev
-```
+**Should** it be one of those? Probably yes, but here we are.
 
-Your file changes are watched, and assets are rebuilt upon change.
+## Data structure:
 
-Open up [http://localhost:3333](http://localhost:3333) and you should be ready to go!
+Data is stored in a single Dynamo table for ease, speed, availability, and low price.
 
-## Deploying
+We're generally following the [Composite primary key + the Query API action](https://www.alexdebrie.com/posts/dynamodb-one-to-many/#composite-primary-key--the-query-api-action) pattern here.
 
-Before you can deploy, you'll need to do some setup with AWS:
+We'll have two types of objects - the "Place" which is a parent container for "Item" objects.
 
-- First [install the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html)
-- Then [follow the Architect setup instructions](https://arc.codes/docs/en/guides/get-started/detailed-aws-setup).
-
-If you make it through all of that, you're ready to deploy!
-
-1. build the app for production:
-
-   ```sh
-   npm run build
-   ```
-
-2. Deploy with `arc`
-
-   ```sh
-   arc deploy production
-   ```
-
-You're in business!
-
-Data structure:
-
-Following the [Composite primary key + the Query API action](https://www.alexdebrie.com/posts/dynamodb-one-to-many/#composite-primary-key--the-query-api-action) pattern here.
-
-We'll have two types of objects - the "Place" which is a parent container for "Thing" objects.
+![data model](public/data_model.png)
 
 This is small, so we're manually handling data operations. If it got more complex, we'd probably look into [@aws/dynamodb-data-mapper](https://github.com/awslabs/dynamodb-data-mapper-js).
