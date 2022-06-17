@@ -13,7 +13,7 @@ export const getPlace = (placeName: string): Place | undefined => {
   const places = getPlaces()
 
   const place = places?.filter((element: Place) => {
-    return element.name === placeName
+    return element.name.toLowerCase() === placeName.toLowerCase()
   })[0]
 
   return place
@@ -32,7 +32,7 @@ export const getItem = (
   const place = getPlace(placeName)
 
   const item = place?.items?.filter((element) => {
-    return itemName === element.name
+    return itemName.toLowerCase() === element.name.toLowerCase()
   })[0]
 
   return item
@@ -42,7 +42,7 @@ export const deletePlace = (placeName: string) => {
   const places = getPlaces()
 
   const newPlaces = places?.filter((element) => {
-    return element.name !== placeName
+    return element.name.toLowerCase() !== placeName.toLowerCase()
   })
 
   const jsonData = { places: newPlaces }
@@ -54,11 +54,11 @@ export const deleteItem = (placeName: string, itemName: string) => {
 
   const newPlacesWithoutItem = places?.map((element) => {
     // if it's not the place we're looking for, stop
-    if (element.name !== placeName) return element
+    if (element.name.toLowerCase() !== placeName.toLowerCase()) return element
 
     // make a list of all the items except the one we're looking for
     const newItemList = element.items?.filter((e) => {
-      return e.name !== itemName
+      return e.name.toLowerCase() !== itemName.toLowerCase()
     })
 
     // make that the new item list
@@ -79,19 +79,22 @@ export const upsertPlace = (placeToUpsert: Place) => {
   delete placeToUpsert.deletedAt
   delete placeToUpsert.lastUpdatedAt
 
+  let foundMatchingPlace = false
+
   // if the place already exists, edit that element
   // and return a new array
   const existingPlaces = getPlaces()
   const newPlaces = existingPlaces?.map((element: Place) => {
-    if (element.name !== placeToUpsert.name) return element
+    if (element.name.toLowerCase() !== placeToUpsert.name.toLowerCase())
+      return element
+    foundMatchingPlace = true
     const newElement = { ...element, ...placeToUpsert }
     return newElement
   })
 
-  if (existingPlaces === newPlaces) {
+  if (!foundMatchingPlace) {
     // if we didn't find an existing element with a matching name above,
     // the starting and "new" arrays will match. so we should add a new element
-
     const newPlace: Place = {
       ...placeToUpsert,
       createdAt: new Date().toUTCString(),
@@ -101,7 +104,48 @@ export const upsertPlace = (placeToUpsert: Place) => {
 
     newPlaces?.push(newPlace)
   }
+  const jsonData = { places: newPlaces }
+  writeFileSync(JSON_DATA_FILE_PATH, JSON.stringify(jsonData))
+}
 
+export const upsertItem = (placeName: string, itemToUpsert: Item) => {
+  // remove properties we want to manage ourselves first
+  delete itemToUpsert.createdAt
+  delete itemToUpsert.deleted
+  delete itemToUpsert.deletedAt
+  delete itemToUpsert.lastUpdatedAt
+
+  // if the place already exists, edit that element
+  // and return a new array
+  const existingPlaces = getPlaces()
+  const newPlaces = existingPlaces?.map((place: Place) => {
+    if (place.name.toLowerCase() !== placeName.toLowerCase()) return place
+
+    let foundMatchingItem = false
+    const newItems = place.items?.map((item) => {
+      if (item.name.toLowerCase() !== itemToUpsert.name.toLowerCase())
+        return item
+      foundMatchingItem = true
+      const newItem = { ...item, ...itemToUpsert }
+      return newItem
+    })
+
+    if (!foundMatchingItem) {
+      // if we didn't find an existing item,
+      // we should add a new one
+      const newItem: Item = {
+        ...itemToUpsert,
+        createdAt: new Date().toUTCString(),
+        deleted: false,
+        lastUpdatedAt: new Date().toUTCString(),
+      }
+      newItems?.push(newItem)
+    }
+    place.items = newItems
+    return place
+  })
+
+  console.log("about to write", newPlaces)
   const jsonData = { places: newPlaces }
   writeFileSync(JSON_DATA_FILE_PATH, JSON.stringify(jsonData))
 }
