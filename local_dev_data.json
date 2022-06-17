@@ -1,7 +1,8 @@
 {
   "places": [
     {
-      "name": "New Asian Panda",
+      "name": "newasianpanda",
+      "humanName": "New Asian Panda",
       "orderAgain": "yes",
       "location": "10430 Ridgefield Pkwy, Richmond, VA 23233",
       "imageUrl": "https://s3-media0.fl.yelpcdn.com/bphoto/pFWe4FCDICTFEQJ7FLy7oQ/o.jpg",
@@ -31,7 +32,8 @@
       "deleted": false
     },
     {
-      "name": "Bocate Arepa Bar",
+      "name": "bocataarepabar",
+      "humanName": "Bocata Arepa Bar",
       "orderAgain": "yes",
       "location": "10170 W Broad St, Glen Allen, VA 23060",
       "imageUrl": "https://s3-media0.fl.yelpcdn.com/bphoto/ziRz32ESOzqJMxLLpwRf_Q/o.jpg",
