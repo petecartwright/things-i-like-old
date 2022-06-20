@@ -46,7 +46,7 @@ export const deletePlace = (placeName: string) => {
   })
 
   const jsonData = { places: newPlaces }
-  writeFileSync(JSON_DATA_FILE_PATH, JSON.stringify(jsonData))
+  writeFileSync(JSON_DATA_FILE_PATH, JSON.stringify(jsonData, null, 2))
 }
 
 export const deleteItem = (placeName: string, itemName: string) => {
@@ -69,7 +69,7 @@ export const deleteItem = (placeName: string, itemName: string) => {
   })
 
   const jsonData = { places: newPlacesWithoutItem }
-  writeFileSync(JSON_DATA_FILE_PATH, JSON.stringify(jsonData))
+  writeFileSync(JSON_DATA_FILE_PATH, JSON.stringify(jsonData, null, 2))
 }
 
 export const upsertPlace = (placeToUpsert: Place) => {
@@ -80,6 +80,14 @@ export const upsertPlace = (placeToUpsert: Place) => {
   delete placeToUpsert.lastUpdatedAt
 
   let foundMatchingPlace = false
+
+  if (!placeToUpsert.name) {
+    // take the provided human name and lowercase it
+    // and remove all non-alphanumeric characters
+    placeToUpsert.name = placeToUpsert.humanName
+      .toLowerCase()
+      .replace(/[^a-z0-9]/gi, "")
+  }
 
   // if the place already exists, edit that element
   // and return a new array
@@ -105,7 +113,7 @@ export const upsertPlace = (placeToUpsert: Place) => {
     newPlaces?.push(newPlace)
   }
   const jsonData = { places: newPlaces }
-  writeFileSync(JSON_DATA_FILE_PATH, JSON.stringify(jsonData))
+  writeFileSync(JSON_DATA_FILE_PATH, JSON.stringify(jsonData, null, 2))
 }
 
 export const upsertItem = (placeName: string, itemToUpsert: Item) => {
@@ -114,6 +122,14 @@ export const upsertItem = (placeName: string, itemToUpsert: Item) => {
   delete itemToUpsert.deleted
   delete itemToUpsert.deletedAt
   delete itemToUpsert.lastUpdatedAt
+
+  if (!itemToUpsert.name) {
+    // take the provided human name and lowercase it
+    // and remove all non-alphanumeric characters
+    itemToUpsert.name = itemToUpsert.humanName
+      .toLowerCase()
+      .replace(/[^a-z0-9]/gi, "")
+  }
 
   // if the place already exists, edit that element
   // and return a new array
@@ -145,7 +161,6 @@ export const upsertItem = (placeName: string, itemToUpsert: Item) => {
     return place
   })
 
-  console.log("about to write", newPlaces)
   const jsonData = { places: newPlaces }
-  writeFileSync(JSON_DATA_FILE_PATH, JSON.stringify(jsonData))
+  writeFileSync(JSON_DATA_FILE_PATH, JSON.stringify(jsonData, null, 2))
 }

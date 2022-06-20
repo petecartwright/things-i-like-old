@@ -1,5 +1,5 @@
 import type { LoaderFunction } from "@remix-run/node"
-import { getItem } from "app/utils/getLocalData.server"
+import { getItem } from "~/utils/dataHelpers.server"
 import { useLoaderData } from "@remix-run/react"
 import type { Item } from "app/types/types"
 import invariant from "tiny-invariant"
@@ -16,8 +16,9 @@ export default function ItemTest() {
 
   return (
     <div>
-      Name: {item.name} <br />
-      CreatedAt: {item.createdAt} <br />
+      <div>Name {item.humanName} </div>
+      <div>Created At {item.createdAt} </div>
+      <img src={item.imageUrl} alt="" />
     </div>
   )
 }

@@ -1,5 +1,5 @@
 import type { LoaderFunction } from "@remix-run/node"
-import { getPlace } from "app/utils/getLocalData.server"
+import { getPlace } from "~/utils/dataHelpers.server"
 import { useLoaderData } from "@remix-run/react"
 import type { Place } from "app/types/types"
 import invariant from "tiny-invariant"
